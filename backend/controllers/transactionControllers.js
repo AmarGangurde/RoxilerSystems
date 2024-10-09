@@ -1,9 +1,10 @@
 const Product = require('../models/transactionModels');
 const axios = require('axios');
+require('dotenv').config()
 
 const initializeDatabase = async (req, res) => {
   try {
-      const response = await axios.get('https://s3.amazonaws.com/roxiler.com/product_transaction.json');
+      const response = await axios.get(process.env.AWS_API);
       const data = response.data;
 
       await Product.deleteMany();
